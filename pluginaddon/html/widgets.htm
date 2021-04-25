@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>NewSlide Widgets Clock</title>
+		<style>
+			body{
+				padding: 0;
+				margin: 0;
+				background: url('img/background.png') no-repeat;
+				font-family: sans-serif;
+				color:white;
+				font-size: 28px;
+			}
+			#container{
+				margin-top: 36px;
+				height: 115px;
+			}
+		</style>
+		<script>
+		function makeArray() {
+			for (i = 0; i<makeArray.arguments.length; i++)
+			this[i + 1] = makeArray.arguments[i];
+		}
+		function timedRefresh(timeoutPeriod) {
+			setTimeout("location.reload(true);",timeoutPeriod);
+		}
+		</script>
+	</head>
+	<body onload="timedRefresh(30000)">
+		<div id="container">
+			<table border="0" cellpadding="0" cellspacing="0" width="480">
+				<tr>
+					<td width="80"></td>
+					<td id="hour" width="142"><center>
+					<script>
+					var now = new Date();
+					var hours = now.getHours();
+					if (hours>12){hours=hours-12;}
+					hours = hours.toString();
+					document.write('<img src="img/'+hours.charAt(0)+'.png">');
+					if (hours.length != 1) {
+						document.write('<img src="img/'+hours.charAt(1)+'.png">');
+					}
+					</script>
+					</center></td>
+					<td width="45"></td>
+					<td id="minute" width="142"><center>
+					<script>
+					var now = new Date();
+					var minutes = now.getMinutes();
+					minutes = minutes.toString();
+					document.write('<img src="img/'+minutes.charAt(0)+'.png">');
+					if (minutes.length != 1) {
+						document.write('<img src="img/'+minutes.charAt(1)+'.png">');
+					}
+					</script>
+					</center></td>
+					<td width="71"></td>
+				</tr>
+				<tr height="40">
+					<td colspan="5" height="40"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3" style="font-size: 28px;"><center>
+					<script>
+					var months = new makeArray('January','February','March','April','May',
+					'June','July','August','September','October','November','December');
+					var date = new Date();
+					var day = date.getDate();
+					var month = date.getMonth() + 1;
+					var yy = date.getYear();
+					var year = (yy < 1000) ? yy + 1900 : yy;
+
+					document.write(months[month] + " " + day + ", " + year);
+					</script>
+					</center></td>
+					<td></td>
+				</tr>
+			</table> 
+		</div>
+	</body>
+</html>
